@@ -160,8 +160,13 @@ parse_git_branch_or_tag() {
   echo $OUT
 }
 
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+if [ -f /usr/local/share/chruby/chruby.sh ]; then
+    source /usr/local/share/chruby/chruby.sh
+fi
+
+if [ -f /usr/local/share/chruby/auto.sh ]; then
+    source /usr/local/share/chruby/auto.sh
+fi
 
 # Run twolfson/sexy-bash-prompt
 # . ~/.bash_prompt
