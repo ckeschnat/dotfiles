@@ -23,6 +23,9 @@ export PAGER=less
 
 bindkey '\es' push-line-or-edit
 
+setopt interactive_comments
+setopt auto_cd
+
 source ~/.sh_aliases
 
 if [[ -f /usr/local/share/chruby/chruby.sh ]]; then
