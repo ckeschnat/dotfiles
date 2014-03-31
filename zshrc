@@ -1,12 +1,10 @@
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
-setopt nomatch notify
-unsetopt appendhistory autocd beep extendedglob
+
 bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+
+# Added by compinstall
 zstyle :compinstall filename '/var/www/ckeschnat/.zshrc'
 
 autoload -Uz compinit
@@ -23,7 +21,14 @@ export PAGER=less
 
 bindkey '\es' push-line-or-edit
 
+setopt kshoptionprint
 setopt interactive_comments
+setopt appendhistory
+setopt histignoredups
+setopt noautocd
+setopt nobeep
+setopt nomatch
+setopt notify
 
 source ~/.sh_aliases
 
