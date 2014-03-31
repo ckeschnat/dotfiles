@@ -19,6 +19,7 @@ prompt adam2
 
 export EDITOR=vim
 export VISUAL=$EDITOR
+export PAGER=less
 
 bindkey '\es' push-line-or-edit
 
