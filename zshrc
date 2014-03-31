@@ -24,7 +24,6 @@ export PAGER=less
 bindkey '\es' push-line-or-edit
 
 setopt interactive_comments
-setopt auto_cd
 
 source ~/.sh_aliases
 
