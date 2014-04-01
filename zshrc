@@ -15,17 +15,17 @@ export PAGER=less
 
 bindkey '\es' push-line-or-edit
 
-setopt kshoptionprint
+setopt ksh_option_print
 setopt interactive_comments
-setopt appendhistory
-setopt histignoredups
-setopt noautocd
-setopt nobeep
+setopt append_history
+setopt hist_ignore_dups
+setopt no_autocd
+setopt no_beep
 setopt nomatch
 setopt notify
-setopt promptsubst
-setopt autopushd
-setopt pushdignoredups
+setopt prompt_subst
+setopt auto_pushd
+setopt pushd_ignore_dups
 
 DIRSTACKSIZE=5
 
