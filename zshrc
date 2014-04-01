@@ -4,16 +4,10 @@ SAVEHIST=1000000
 
 bindkey -e
 
-# Added by compinstall
-zstyle :compinstall filename '/var/www/ckeschnat/.zshrc'
+zstyle :compinstall filename '${HOME}/.zshrc'
 
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
-
-autoload -U promptinit
-promptinit
-prompt adam2
 
 export EDITOR=vim
 export VISUAL=$EDITOR
