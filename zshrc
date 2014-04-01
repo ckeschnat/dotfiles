@@ -50,3 +50,13 @@ man() {
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
     man "$@"
 }
+
+# autoload -U promptinit
+# promptinit
+# prompt adam2
+
+#------------------------------
+# Prompt
+#------------------------------
+PS1='%B%F{cyan}.%b%F{cyan}-%B%F{black}(%B%F{green}%~%B%F{black})%b%F{cyan}-------------------------------------------------------------------------------------------------------------------------------------------------------------------%B%F{black}(%b%F{cyan}%n%B%F{cyan}@%b%F{cyan}%m%B%F{black})%b%F{cyan}-
+%{%}%B%F{cyan}\`-%b%F{cyan}-%B%F{white}%B%F{white}%(!.#.>) %b%f%k'
