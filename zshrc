@@ -23,6 +23,7 @@ setopt noautocd
 setopt nobeep
 setopt nomatch
 setopt notify
+setopt promptsubst
 
 source ~/.sh_aliases
 
