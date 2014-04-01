@@ -24,6 +24,10 @@ setopt nobeep
 setopt nomatch
 setopt notify
 setopt promptsubst
+setopt autopushd
+setopt pushdignoredups
+
+DIRSTACKSIZE=5
 
 source ~/.sh_aliases
 
