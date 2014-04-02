@@ -64,3 +64,5 @@ zstyle ':completion:*:descriptions' format %B%d%b
 zstyle ':completion:*' group-name ''
 # Show descriptions for options
 zstyle ':completion:*' verbose
+# Use menu when completing
+zstyle ':completion*:default' menu 'select=0'
