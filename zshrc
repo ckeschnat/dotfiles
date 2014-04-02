@@ -66,3 +66,6 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose
 # Use menu when completing
 zstyle ':completion*:default' menu 'select=0'
+# Select an item from a menu without closing the menu
+zmodload zsh/complist
+bindkey -M menuselect '\C-o' accept-and-menu-complete
