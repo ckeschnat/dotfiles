@@ -26,6 +26,7 @@ setopt notify
 setopt prompt_subst
 setopt auto_pushd
 setopt pushd_ignore_dups
+setopt extended_glob
 
 DIRSTACKSIZE=5
 
