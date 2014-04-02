@@ -4,8 +4,6 @@ SAVEHIST=1000000
 
 bindkey -e
 
-zstyle :compinstall filename '${HOME}/.zshrc'
-
 autoload -Uz compinit
 compinit
 
