@@ -56,6 +56,15 @@ man() {
     man "$@"
 }
 
+# From Gary Bernhardt
+function p() {
+    proj=$(ls ~/projects | selecta)
+    if [[ -n "$proj" ]]; then
+        cd ~/projects/$proj
+    fi
+}
+#------------------------------
+
 autoload -U promptinit
 promptinit
 prompt adam2
