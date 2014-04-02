@@ -30,7 +30,7 @@ setopt menu_complete
 DIRSTACKSIZE=5
 
 source ~/.sh_aliases
-export PATH=~/bin/:$PATH
+export PATH=$HOME/bin/:$PATH
 
 if [[ -f /usr/local/share/chruby/chruby.sh ]]; then
     source /usr/local/share/chruby/chruby.sh
