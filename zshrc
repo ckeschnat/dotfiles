@@ -57,3 +57,9 @@ man() {
 autoload -U promptinit
 promptinit
 prompt adam2
+
+# Show type of completion and group by it
+zstyle ':completion:*:descriptions' format %B%d%b
+zstyle ':completion:*' group-name ''
+# Show descriptions for options
+zstyle ':completion:*' verbose
