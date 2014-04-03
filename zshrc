@@ -26,6 +26,7 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 setopt extended_glob
 setopt menu_complete
+setopt complete_in_word
 
 DIRSTACKSIZE=5
 
