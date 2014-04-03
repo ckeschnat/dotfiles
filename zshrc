@@ -60,7 +60,7 @@ man() {
 }
 
 # From Gary Bernhardt
-function p() {
+function pp() {
     proj=$(ls ~/projects | selecta)
     if [[ -n "$proj" ]]; then
         cd ~/projects/$proj
