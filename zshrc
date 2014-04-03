@@ -86,3 +86,5 @@ zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFF
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 # Complete lower case case-insensitive
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# Partial completion
+zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'm:{a-zA-Z}={A-Za-z}'
