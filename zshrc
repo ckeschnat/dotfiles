@@ -97,3 +97,7 @@ zstyle ':completion:*' ignore-parents parent pwd
 autoload -U select-word-style
 select-word-style bash
 
+# Complete only hostnames for hosts in .ssh/config and the machine connected from
+# From https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=430146#20
+[[ -f ~/.ssh/config ]] && hosts=(${${${(M)${(f)"$(<~/.ssh/config)"}:#Host*}#Host }:#*\**})
+[[ ! -z $hosts ]] && zstyle ':completion:*:hosts' hosts $hosts ${REMOTEHOST:-${SSH_CLIENT%% *}}
