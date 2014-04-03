@@ -66,6 +66,14 @@ function pp() {
         cd ~/projects/$proj
     fi
 }
+
+# automatically rename tmux windows to hostnames after ssh
+# and back after disconnecting
+ssh() {
+    tmux rename-window "$*"
+    command ssh "$@"
+    tmux rename-window "zsh"
+}
 #------------------------------
 
 autoload -U promptinit
