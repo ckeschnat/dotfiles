@@ -70,9 +70,9 @@ function pp() {
 # automatically rename tmux windows to hostnames after ssh
 # and back after disconnecting
 ssh() {
-    tmux rename-window "$*"
+    [[ ! -z "$TMUX" ]] && tmux rename-window "$*"
     command ssh "$@"
-    tmux rename-window "zsh"
+    [[ ! -z "$TMUX" ]] && tmux rename-window "zsh"
 }
 #------------------------------
 
