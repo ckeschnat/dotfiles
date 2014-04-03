@@ -88,3 +88,7 @@ zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # Partial completion
 zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'm:{a-zA-Z}={A-Za-z}'
+
+# Use bash style words (e.g. for backward-kill-word)
+autoload -U select-word-style
+select-word-style bash
