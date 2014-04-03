@@ -79,3 +79,7 @@ zstyle ':completion*:default' menu 'select=0'
 # Select an item from a menu without closing the menu
 zmodload zsh/complist
 bindkey -M menuselect '\C-o' accept-and-menu-complete
+# Approximate completion
+zstyle ':completion:::::' completer _complete _approximate
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) )'
+zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
