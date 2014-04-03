@@ -88,7 +88,10 @@ zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # Partial completion
 zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'm:{a-zA-Z}={A-Za-z}'
+# Ignore current path when complete ../
+zstyle ':completion:*' ignore-parents parent pwd
 
 # Use bash style words (e.g. for backward-kill-word)
 autoload -U select-word-style
 select-word-style bash
+
