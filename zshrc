@@ -83,3 +83,5 @@ bindkey -M menuselect '\C-o' accept-and-menu-complete
 zstyle ':completion:::::' completer _complete _approximate
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) )'
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+# Complete lower case case-insensitive
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
