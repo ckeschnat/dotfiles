@@ -163,9 +163,49 @@ git_custom_status() {
     [ -n "$git_where" ] && echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX${git_where#(refs/heads/|tags/)}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
-RPS1='$(git_custom_status) ${magenta}%n${reset}@${cyan}%m ${yellow}%*${reset}'
+# http://eseth.org/2009/nethack-term.html
+local -a infoline
+# CWD writable?
+[[ -w $PWD ]] && infoline+=( ${green} ) || infoline+=( ${yellow} )
+# CWD
+infoline+=( "%~ " )
+infoline+=( "${reset} " )
+# Username
+infoline+=( "%n" )
+# Hostname when Using ssh
+[[ -n $SSH_CLIENT ]] && infoline+=( "@%m" )
 
-# basic prompt on the left
-PROMPT='${cyan}%~%(?.${green}.${red})
-%B$%b '
+# length for filling the infoline
+local i_width
+i_width=${(S)infoline//\%\{*\%\}}
+i_width=${#${(%)i_width}}
+local i_filler
+i_filler=$(( $COLUMNS - $i_width ))
+
+# generate filler
+local filler
+filler="${gray}${(l:${i_filler}::.:)}${reset}"
+
+# add filler to infoline
+infoline[2]=( "${infoline[2]} ${filler} " )
+
+local -a lines
+
+lines+=( ${(j::)infoline} )
+
+# TODO maybe not?
+[[ -n ${vcs_info_msg_0_} ]] && lines+=( "${gray}${vcs_info_msg_0_}${reset}" )
+
+lines+=( "%(1j.${gray}%j${reset} .)%(0?.${white}.${red})%#${reset} " )
+
+PROMPT=${(F)lines}
+
+
+
+
+# RPS1='$(git_custom_status) ${magenta}%n${reset}@${cyan}%m ${yellow}%*${reset}'
+#
+# # basic prompt on the left
+# PROMPT='${cyan}%~%(?.${green}.${red})
+# %B$%b '
 #------------------------------
