@@ -251,7 +251,7 @@ function setprompt() {
     ### Now, assemble all prompt lines
     lines+=( ${(j::)infoline} )
     [[ -n ${vcs_info_msg_0_} ]] && lines+=( "${gray}${vcs_info_msg_0_}${reset}" )
-    lines+=( "%(1j.${gray}%j${reset} .)%(0?.${white}.${red})%#${reset} " )
+    lines+=( "%(1j.${gray}%j${reset} .)%(0?.${green}.${red})%B$%b ${reset} " )
 
     ### Finally, set the prompt
     PROMPT=${(F)lines}
