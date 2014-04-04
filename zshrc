@@ -241,6 +241,7 @@ function setprompt() {
     # Username & host
     infoline+=( "%n" )
     [[ -n $SSH_CLIENT ]] && infoline+=( "@%m" )
+    infoline+=( " ${yellow}%*${reset}" )
 
     i_width=${(S)infoline//\%\{*\%\}} # search-and-replace color escapes
     i_width=${#${(%)i_width}} # expand all escapes and count the chars
