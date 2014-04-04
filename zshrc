@@ -231,7 +231,7 @@ function +vi-git-stash() {
 
 function setprompt() {
     local -a lines infoline
-    local x i dungeon filler i_width i_pad
+    local x i filler i_width i_pad
 
     ### First, assemble the top line
     # Current dir; show in yellow if not writable
