@@ -152,7 +152,7 @@ git_custom_status() {
     [ -n "$git_where" ] && echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX${git_where#(refs/heads/|tags/)}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
-RPS1='$(git_custom_status) %{$fg[magenta]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %{$fg[yellow]%}%T%{$reset_color%}'
+RPS1='$(git_custom_status) %{$fg[magenta]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %{$fg[yellow]%}%*%{$reset_color%}'
 
 # basic prompt on the left
 PROMPT='%{$fg[cyan]%}%~% %(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
