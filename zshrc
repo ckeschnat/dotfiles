@@ -14,6 +14,8 @@ export PAGER=less
 bindkey '\es' push-line-or-edit
 # Make S-Tab work
 bindkey '^[[Z' reverse-menu-complete
+# Enable globs in history search
+bindkey "^R" history-incremental-pattern-search-backward
 
 setopt ksh_option_print
 setopt interactive_comments
