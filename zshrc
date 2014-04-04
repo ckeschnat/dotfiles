@@ -231,10 +231,7 @@ function +vi-git-stash() {
 
 function setprompt() {
     local -a lines infoline
-    local x i pet dungeon filler i_width i_pad
-
-    # A domestic animal, the _tame dog_ (_Canis familiaris_)
-    pet=d
+    local x i dungeon filler i_width i_pad
 
     ### First, assemble the top line
     # Current dir; show in yellow if not writable
@@ -245,33 +242,16 @@ function setprompt() {
     infoline+=( "%n" )
     [[ -n $SSH_CLIENT ]] && infoline+=( "@%m" )
 
-    # Strip color to find text width & make the full-width filler
-    zstyle -T ":pr-nethack:" show-pet && i_pad=4 || i_pad=0
-
     i_width=${(S)infoline//\%\{*\%\}} # search-and-replace color escapes
     i_width=${#${(%)i_width}} # expand all escapes and count the chars
 
-    filler="${gray}${(l:$(( $COLUMNS - $i_width - $i_pad ))::.:)}${reset}"
+    filler="${gray}${(l:$(( $COLUMNS - $i_width ))::.:)}${reset}"
     infoline[2]=( "${infoline[2]} ${filler} " )
 
     ### Now, assemble all prompt lines
     lines+=( ${(j::)infoline} )
     [[ -n ${vcs_info_msg_0_} ]] && lines+=( "${gray}${vcs_info_msg_0_}${reset}" )
     lines+=( "%(1j.${gray}%j${reset} .)%(0?.${white}.${red})%#${reset} " )
-
-    ### Add dungeon floor to each line
-    # Allow easy toggling of pet display
-    if zstyle -T ":pr-nethack:" show-pet ; then
-        dungeon=${(l:$(( ${#lines} * 3 ))::.:)}
-        dungeon[$[${RANDOM}%${#dungeon}]+1]=$pet
-
-        for (( i=1; i < $(( ${#lines} + 1 )); i++ )) ; do
-            case $i in
-                1) x=1;; 2) x=4;; 3) x=7;; 4) x=10;;
-            esac
-            lines[$i]="${gray}${dungeon[x,$(( $x + 2 ))]} ${lines[$i]}${reset}"
-        done
-    fi
 
     ### Finally, set the prompt
     PROMPT=${(F)lines}
