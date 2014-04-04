@@ -155,5 +155,6 @@ git_custom_status() {
 RPS1='$(git_custom_status) %{$fg[magenta]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %{$fg[yellow]%}%*%{$reset_color%}'
 
 # basic prompt on the left
-PROMPT='%{$fg[cyan]%}%~% %(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
+PROMPT='%{$fg[cyan]%}%~%(?.%{$fg[green]%}.%{$fg[red]%})
+%B$%b '
 #------------------------------
