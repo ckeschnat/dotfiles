@@ -246,7 +246,7 @@ function setprompt() {
     i_width=${(S)infoline//\%\{*\%\}} # search-and-replace color escapes
     i_width=${#${(%)i_width}} # expand all escapes and count the chars
 
-    filler="${gray}${(l:$(( $COLUMNS - $i_width ))::.:)}${reset}"
+    filler="%(#.${red}.${gray})${(l:$(( $COLUMNS - $i_width ))::.:)}${reset}"
     infoline[2]=( "${infoline[2]} ${filler} " )
 
     ### Now, assemble all prompt lines
