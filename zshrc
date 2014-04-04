@@ -110,3 +110,10 @@ select-word-style bash
 # From https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=430146#20
 [[ -f ~/.ssh/config ]] && hosts=(${${${(M)${(f)"$(<~/.ssh/config)"}:#Host*}#Host }:#*\**})
 [[ ! -z $hosts ]] && zstyle ':completion:*:hosts' hosts $hosts ${REMOTEHOST:-${SSH_CLIENT%% *}}
+
+# Use Ctrl-z to bring vim to foreground
+foreground-vi() {
+  fg %vi
+}
+zle -N foreground-vi
+bindkey '^Z' foreground-vi
