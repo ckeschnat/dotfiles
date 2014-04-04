@@ -126,6 +126,50 @@ bindkey '^Z' foreground-vi
 # originally from https://gist.github.com/mislav/1712320
 #------------------------------
 # autoload colors; colors;
+#
+# reset="%{${reset_color}%}"
+# white="%{$fg[white]%}"
+# gray="%{$fg_bold[black]%}"
+# green="%{$fg_bold[green]%}"
+# red="%{$fg[red]%}"
+# yellow="%{$fg[yellow]%}"
+# cyan="%{$fg[cyan]%}"
+# magenta="%{$fg[magenta]%}"
+#
+# ZSH_THEME_GIT_PROMPT_PREFIX="${reset}${green}["
+# ZSH_THEME_GIT_PROMPT_SUFFIX="]${reset}"
+# ZSH_THEME_GIT_PROMPT_DIRTY="${red}*${reset}"
+# ZSH_THEME_GIT_PROMPT_CLEAN=""
+#
+# # show git branch/tag, or name-rev if on detached head
+# parse_git_branch() {
+#     (command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD) 2>/dev/null
+# }
+#
+# # show red star if there are uncommitted changes
+# parse_git_dirty() {
+#     if command git diff-index --quiet HEAD 2> /dev/null; then
+#         echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+#     else
+#         echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+#     fi
+# }
+#
+# # if in a git repo, show dirty indicator + git branch
+# git_custom_status() {
+#     local git_where="$(parse_git_branch)"
+#     [ -n "$git_where" ] && echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX${git_where#(refs/heads/|tags/)}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+# }
+
+# RPS1='$(git_custom_status) ${magenta}%n${reset}@${cyan}%m ${yellow}%*${reset}'
+#
+# # basic prompt on the left
+# PROMPT='${cyan}%~%(?.${green}.${red})
+# %B$%b '
+#------------------------------
+
+
+# http://eseth.org/2009/nethack-term.html
 autoload -U colors && colors
 local reset white gray green red
 
@@ -138,74 +182,102 @@ yellow="%{$fg[yellow]%}"
 cyan="%{$fg[cyan]%}"
 magenta="%{$fg[magenta]%}"
 
-ZSH_THEME_GIT_PROMPT_PREFIX="${reset}${green}["
-ZSH_THEME_GIT_PROMPT_SUFFIX="]${reset}"
-ZSH_THEME_GIT_PROMPT_DIRTY="${red}*${reset}"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git*:*' get-revision true
+zstyle ':vcs_info:git*:*' check-for-changes true
 
-# show git branch/tag, or name-rev if on detached head
-parse_git_branch() {
-    (command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD) 2>/dev/null
-}
+# hash changes branch misc
+zstyle ':vcs_info:git*' formats "(%s) %12.12i %c%u %b%m"
+zstyle ':vcs_info:git*' actionformats "(%s|%a) %12.12i %c%u %b%m"
 
-# show red star if there are uncommitted changes
-parse_git_dirty() {
-    if command git diff-index --quiet HEAD 2> /dev/null; then
-        echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
-    else
-        echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash
+
+# Show remote ref name and number of commits ahead-of or behind
+function +vi-git-st() {
+    local ahead behind remote
+    local -a gitstatus
+
+    # Are we on a remote-tracking branch?
+    remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
+        --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+
+    if [[ -n ${remote} ]] ; then
+        # for git prior to 1.7
+        # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
+        ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
+        (( $ahead )) && gitstatus+=( "${c3}+${ahead}${c2}" )
+
+        # for git prior to 1.7
+        # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
+        behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+        (( $behind )) && gitstatus+=( "${c4}-${behind}${c2}" )
+
+        hook_com[branch]="${hook_com[branch]} [${remote} ${(j:/:)gitstatus}]"
     fi
 }
 
-# if in a git repo, show dirty indicator + git branch
-git_custom_status() {
-    local git_where="$(parse_git_branch)"
-    [ -n "$git_where" ] && echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX${git_where#(refs/heads/|tags/)}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+
+# Show count of stashed changes
+function +vi-git-stash() {
+    local -a stashes
+
+    if [[ -s ${hook_com[base]}/.git/refs/stash ]] ; then
+        stashes=$(git stash list 2>/dev/null | wc -l)
+        hook_com[misc]+=" (${stashes} stashed)"
+    fi
 }
 
-# http://eseth.org/2009/nethack-term.html
-local -a infoline
-# CWD writable?
-[[ -w $PWD ]] && infoline+=( ${green} ) || infoline+=( ${yellow} )
-# CWD
-infoline+=( "%~ " )
-infoline+=( "${reset} " )
-# Username
-infoline+=( "%n" )
-# Hostname when Using ssh
-[[ -n $SSH_CLIENT ]] && infoline+=( "@%m" )
 
-# length for filling the infoline
-local i_width
-i_width=${(S)infoline//\%\{*\%\}}
-i_width=${#${(%)i_width}}
-local i_filler
-i_filler=$(( $COLUMNS - $i_width ))
+function setprompt() {
+    local -a lines infoline
+    local x i pet dungeon filler i_width i_pad
 
-# generate filler
-local filler
-filler="${gray}${(l:${i_filler}::.:)}${reset}"
+    # A domestic animal, the _tame dog_ (_Canis familiaris_)
+    pet=d
 
-# add filler to infoline
-infoline[2]=( "${infoline[2]} ${filler} " )
+    ### First, assemble the top line
+    # Current dir; show in yellow if not writable
+    [[ -w $PWD ]] && infoline+=( ${green} ) || infoline+=( ${yellow} )
+    infoline+=( "%~${reset} " )
 
-local -a lines
+    # Username & host
+    infoline+=( "%n" )
+    [[ -n $SSH_CLIENT ]] && infoline+=( "@%m" )
 
-lines+=( ${(j::)infoline} )
+    # Strip color to find text width & make the full-width filler
+    zstyle -T ":pr-nethack:" show-pet && i_pad=4 || i_pad=0
 
-# TODO maybe not?
-[[ -n ${vcs_info_msg_0_} ]] && lines+=( "${gray}${vcs_info_msg_0_}${reset}" )
+    i_width=${(S)infoline//\%\{*\%\}} # search-and-replace color escapes
+    i_width=${#${(%)i_width}} # expand all escapes and count the chars
 
-lines+=( "%(1j.${gray}%j${reset} .)%(0?.${white}.${red})%#${reset} " )
+    filler="${gray}${(l:$(( $COLUMNS - $i_width - $i_pad ))::.:)}${reset}"
+    infoline[2]=( "${infoline[2]} ${filler} " )
 
-PROMPT=${(F)lines}
+    ### Now, assemble all prompt lines
+    lines+=( ${(j::)infoline} )
+    [[ -n ${vcs_info_msg_0_} ]] && lines+=( "${gray}${vcs_info_msg_0_}${reset}" )
+    lines+=( "%(1j.${gray}%j${reset} .)%(0?.${white}.${red})%#${reset} " )
 
+    ### Add dungeon floor to each line
+    # Allow easy toggling of pet display
+    if zstyle -T ":pr-nethack:" show-pet ; then
+        dungeon=${(l:$(( ${#lines} * 3 ))::.:)}
+        dungeon[$[${RANDOM}%${#dungeon}]+1]=$pet
 
+        for (( i=1; i < $(( ${#lines} + 1 )); i++ )) ; do
+            case $i in
+                1) x=1;; 2) x=4;; 3) x=7;; 4) x=10;;
+            esac
+            lines[$i]="${gray}${dungeon[x,$(( $x + 2 ))]} ${lines[$i]}${reset}"
+        done
+    fi
 
+    ### Finally, set the prompt
+    PROMPT=${(F)lines}
+}
 
-# RPS1='$(git_custom_status) ${magenta}%n${reset}@${cyan}%m ${yellow}%*${reset}'
-#
-# # basic prompt on the left
-# PROMPT='${cyan}%~%(?.${green}.${red})
-# %B$%b '
-#------------------------------
+function precmd {
+    vcs_info
+    setprompt
+}
