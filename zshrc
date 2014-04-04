@@ -125,11 +125,22 @@ bindkey '^Z' foreground-vi
 # prompt
 # originally from https://gist.github.com/mislav/1712320
 #------------------------------
-autoload colors; colors;
+# autoload colors; colors;
+autoload -U colors && colors
+local reset white gray green red
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}["
-ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
+reset="%{${reset_color}%}"
+white="%{$fg[white]%}"
+gray="%{$fg_bold[black]%}"
+green="%{$fg_bold[green]%}"
+red="%{$fg[red]%}"
+yellow="%{$fg[yellow]%}"
+cyan="%{$fg[cyan]%}"
+magenta="%{$fg[magenta]%}"
+
+ZSH_THEME_GIT_PROMPT_PREFIX="${reset}${green}["
+ZSH_THEME_GIT_PROMPT_SUFFIX="]${reset}"
+ZSH_THEME_GIT_PROMPT_DIRTY="${red}*${reset}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 # show git branch/tag, or name-rev if on detached head
@@ -152,9 +163,9 @@ git_custom_status() {
     [ -n "$git_where" ] && echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX${git_where#(refs/heads/|tags/)}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
-RPS1='$(git_custom_status) %{$fg[magenta]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %{$fg[yellow]%}%*%{$reset_color%}'
+RPS1='$(git_custom_status) ${magenta}%n${reset}@${cyan}%m ${yellow}%*${reset}'
 
 # basic prompt on the left
-PROMPT='%{$fg[cyan]%}%~%(?.%{$fg[green]%}.%{$fg[red]%})
+PROMPT='${cyan}%~%(?.${green}.${red})
 %B$%b '
 #------------------------------
