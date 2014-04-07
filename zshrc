@@ -62,6 +62,7 @@ man() {
 
 # From Gary Bernhardt
 function pp() {
+    type selecta >/dev/null 2>&1 || { echo >&2 "Selecta is missing, get it from https://github.com/garybernhardt/selecta"; return 1; }
     proj=$(ls ~/projects | selecta)
     if [[ -n "$proj" ]]; then
         cd ~/projects/$proj
