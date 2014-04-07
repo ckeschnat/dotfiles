@@ -125,7 +125,6 @@ bindkey '^Z' foreground-vi
 #------------------------------
 # http://eseth.org/2009/nethack-term.html
 autoload -U colors && colors
-local reset white gray green red
 
 reset="%{${reset_color}%}"
 white="%{$fg[white]%}"
