@@ -120,6 +120,9 @@ foreground-vi() {
 zle -N foreground-vi
 bindkey '^Z' foreground-vi
 
+#------------------------------
+# Prompt
+#------------------------------
 # http://eseth.org/2009/nethack-term.html
 autoload -U colors && colors
 local reset white gray green red
@@ -213,3 +216,4 @@ function precmd {
     vcs_info
     setprompt
 }
+#------------------------------
