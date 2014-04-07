@@ -77,7 +77,7 @@ zman() {
 # automatically rename tmux windows to hostnames after ssh
 # and back after disconnecting
 ssh() {
-    [[ ! -z "$TMUX" ]] && tmux rename-window "$*"
+    [[ ! -z "$TMUX" ]] && tmux rename-window ${${(P)#}%.*}
     command ssh "$@"
     [[ ! -z "$TMUX" ]] && tmux rename-window "zsh"
 }
