@@ -120,55 +120,6 @@ foreground-vi() {
 zle -N foreground-vi
 bindkey '^Z' foreground-vi
 
-
-#------------------------------
-# prompt
-# originally from https://gist.github.com/mislav/1712320
-#------------------------------
-# autoload colors; colors;
-#
-# reset="%{${reset_color}%}"
-# white="%{$fg[white]%}"
-# gray="%{$fg_bold[black]%}"
-# green="%{$fg_bold[green]%}"
-# red="%{$fg[red]%}"
-# yellow="%{$fg[yellow]%}"
-# cyan="%{$fg[cyan]%}"
-# magenta="%{$fg[magenta]%}"
-#
-# ZSH_THEME_GIT_PROMPT_PREFIX="${reset}${green}["
-# ZSH_THEME_GIT_PROMPT_SUFFIX="]${reset}"
-# ZSH_THEME_GIT_PROMPT_DIRTY="${red}*${reset}"
-# ZSH_THEME_GIT_PROMPT_CLEAN=""
-#
-# # show git branch/tag, or name-rev if on detached head
-# parse_git_branch() {
-#     (command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD) 2>/dev/null
-# }
-#
-# # show red star if there are uncommitted changes
-# parse_git_dirty() {
-#     if command git diff-index --quiet HEAD 2> /dev/null; then
-#         echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
-#     else
-#         echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
-#     fi
-# }
-#
-# # if in a git repo, show dirty indicator + git branch
-# git_custom_status() {
-#     local git_where="$(parse_git_branch)"
-#     [ -n "$git_where" ] && echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX${git_where#(refs/heads/|tags/)}$ZSH_THEME_GIT_PROMPT_SUFFIX"
-# }
-
-# RPS1='$(git_custom_status) ${magenta}%n${reset}@${cyan}%m ${yellow}%*${reset}'
-#
-# # basic prompt on the left
-# PROMPT='${cyan}%~%(?.${green}.${red})
-# %B$%b '
-#------------------------------
-
-
 # http://eseth.org/2009/nethack-term.html
 autoload -U colors && colors
 local reset white gray green red
