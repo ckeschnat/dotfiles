@@ -81,6 +81,7 @@ ssh() {
     [[ ! -z "$TMUX" ]] && tmux rename-window ${${(P)#}%.*}
     command ssh "$@"
     [[ ! -z "$TMUX" ]] && tmux rename-window "zsh"
+    return 0
 }
 #------------------------------
 
