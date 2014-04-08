@@ -183,6 +183,17 @@ function +vi-git-stash() {
     fi
 }
 
+function battery-status() {
+    # acpi must be present
+    type acpi >/dev/null 2>&1 || return
+    local battery_state
+    battery_state=$(acpi | grep -oP "[0-9]*(?=%)")
+    [[ -z $battery_state ]] && return
+    [[ $battery_state -ge 50 ]] && echo "${green}${battery_state}%%${reset} " && return
+    [[ $battery_state -ge 20 ]] && echo "${yellow}${battery_state}%%${reset} " && return
+    echo "${red}${battery_state}%%${reset} " && return
+}
+
 
 function setprompt() {
     local -a lines infoline
@@ -192,6 +203,9 @@ function setprompt() {
     # Current dir; show in yellow if not writable
     [[ -w $PWD ]] && infoline+=( ${green} ) || infoline+=( ${yellow} )
     infoline+=( "%~${reset} " )
+
+    # Battery status
+    infoline+=$(battery-status)
 
     # Username & host
     infoline+=( "%n" )
@@ -208,6 +222,7 @@ function setprompt() {
     lines+=( ${(j::)infoline} )
     [[ -n ${vcs_info_msg_0_} ]] && lines+=( "${gray}${vcs_info_msg_0_}${reset}" )
     lines+=( "%(1j.${gray}%j${reset} .)%(0?.${green}.${red})%B$%b ${reset} " )
+
 
     ### Finally, set the prompt
     PROMPT=${(F)lines}
