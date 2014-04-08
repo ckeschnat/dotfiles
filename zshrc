@@ -218,3 +218,5 @@ function precmd {
     setprompt
 }
 #------------------------------
+
+TERM=xterm-256color
