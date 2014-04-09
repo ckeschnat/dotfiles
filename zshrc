@@ -221,7 +221,7 @@ function setprompt() {
     # Current dir; show in yellow if not writable
     # Git stuff
     [[ -w $PWD ]] && infoline+=( ${green} ) || infoline+=( ${yellow} )
-    infoline+=( "%~${reset} $(git_prompt_string) " )
+    infoline+=( "%~${reset} $(git_prompt_string)" )
 
     # Battery status
     infoline+=$(battery-status)
