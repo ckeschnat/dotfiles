@@ -125,7 +125,6 @@ bindkey '^Z' foreground-vi
 #------------------------------
 # Prompt
 #------------------------------
-# http://eseth.org/2009/nethack-term.html
 autoload -U colors && colors
 
 reset="%{${reset_color}%}"
@@ -136,52 +135,6 @@ red="%{$fg[red]%}"
 yellow="%{$fg[yellow]%}"
 cyan="%{$fg[cyan]%}"
 magenta="%{$fg[magenta]%}"
-
-# autoload -Uz vcs_info
-# zstyle ':vcs_info:*' enable git
-# zstyle ':vcs_info:git*:*' get-revision true
-# zstyle ':vcs_info:git*:*' check-for-changes true
-#
-# # hash changes branch misc
-# zstyle ':vcs_info:git*' formats "(%s) %12.12i %c%u %b%m"
-# zstyle ':vcs_info:git*' actionformats "(%s|%a) %12.12i %c%u %b%m"
-#
-# zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash
-#
-# Show remote ref name and number of commits ahead-of or behind
-# function +vi-git-st() {
-#     local ahead behind remote
-#     local -a gitstatus
-#
-#     # Are we on a remote-tracking branch?
-#     remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
-#         --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
-#
-#     if [[ -n ${remote} ]] ; then
-#         # for git prior to 1.7
-#         # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
-#         ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-#         (( $ahead )) && gitstatus+=( "${c3}+${ahead}${c2}" )
-#
-#         # for git prior to 1.7
-#         # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
-#         behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-#         (( $behind )) && gitstatus+=( "${c4}-${behind}${c2}" )
-#
-#         hook_com[branch]="${hook_com[branch]} [${remote} ${(j:/:)gitstatus}]"
-#     fi
-# }
-#
-#
-# # Show count of stashed changes
-# function +vi-git-stash() {
-#     local -a stashes
-#
-#     if [[ -s ${hook_com[base]}/.git/refs/stash ]] ; then
-#         stashes=$(git stash list 2>/dev/null | wc -l)
-#         hook_com[misc]+=" (${stashes} stashed)"
-#     fi
-# }
 
 function battery-status() {
     # acpi must be present
@@ -195,13 +148,14 @@ function battery-status() {
 }
 
 function __git_prompt {
-local DIRTY="%{$fg[yellow]%}"
-local CLEAN="%{$fg[green]%}"
-local UNMERGED="%{$fg[red]%}"
-local RESET="%{$terminfo[sgr0]%}"
-git rev-parse --git-dir >& /dev/null
-if [[ $? == 0 ]]
-then
+    local DIRTY=$yellow
+    local CLEAN=$green
+    local UNMERGED=$red
+    local RESET=$reset
+
+    # exit when not inside git repository
+    command git rev-parse --is-inside-work-tree &>/dev/null || return
+
     echo -n "["
     if [[ `git ls-files -u >& /dev/null` == '' ]]
     then
@@ -224,20 +178,18 @@ then
     echo -n `git branch | grep '* ' | sed 's/..//'`
     echo -n $RESET
     echo -n "]"
-fi
 }
 
 function setprompt() {
+    # http://eseth.org/2009/nethack-term.html
     local -a lines infoline
     local x i filler i_width i_pad
 
     ### First, assemble the top line
     # Current dir; show in yellow if not writable
-    [[ -w $PWD ]] && infoline+=( ${green} ) || infoline+=( ${yellow} )
-    infoline+=( "%~${reset} " )
-
     # Git stuff
-    infoline+=$(__git_prompt)
+    [[ -w $PWD ]] && infoline+=( ${green} ) || infoline+=( ${yellow} )
+    infoline+=( "%~${reset} $(__git_prompt) " )
 
     # Battery status
     infoline+=$(battery-status)
@@ -255,7 +207,6 @@ function setprompt() {
 
     ### Now, assemble all prompt lines
     lines+=( ${(j::)infoline} )
-    # [[ -n ${vcs_info_msg_0_} ]] && lines+=( "${gray}${vcs_info_msg_0_}${reset}" )
     lines+=( "%(1j.${gray}%j${reset} .)%(0?.${green}.${red})%B$%b ${reset} " )
 
 
@@ -264,7 +215,6 @@ function setprompt() {
 }
 
 function precmd {
-    # vcs_info
     setprompt
 }
 #------------------------------
