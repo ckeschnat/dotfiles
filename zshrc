@@ -208,7 +208,7 @@ function setprompt() {
     infoline+=$(battery-status)
 
     # Username & host
-    infoline+=( "%n" )
+    infoline+=( "${magenta}%n" )
     [[ -n $SSH_CLIENT ]] && infoline+=( "@%m" )
     infoline+=( " ${yellow}%*${reset}" )
 
