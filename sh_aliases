@@ -3,7 +3,6 @@ eval `dircolors`
 alias ls='ls --time-style=+"%d.%m.%Y %H:%M" $LS_OPTIONS'
 alias ll='ls -lhpF'
 alias ld='ll --sort=t'
-alias lll='ll | $PAGER'
 alias la='ll -a'
 alias rm='rm -i'
 alias cp='cp -i'
