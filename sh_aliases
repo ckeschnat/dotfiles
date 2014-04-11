@@ -2,6 +2,7 @@ export LS_OPTIONS='--color=auto'
 eval `dircolors`
 alias ls='ls --time-style=+"%d.%m.%Y %H:%M" $LS_OPTIONS'
 alias ll='ls -lhpF'
+alias l='ll'
 alias ld='ll --sort=t'
 alias la='ll -a'
 alias rm='rm -i'
