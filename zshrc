@@ -254,5 +254,7 @@ function precmd {
 # -----------------------------------------------
 
 TERM=xterm-256color
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
+if [ -d $HOME/.pyenv/bin/ ]; then
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
