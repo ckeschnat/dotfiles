@@ -42,4 +42,5 @@ alias p='popd'
 alias ssh='ssh -A'
 alias s='ssh'
 alias vz='v ~/dotfiles/zshrc'
+alias t='tmux'
 # vi: filetype=zsh
