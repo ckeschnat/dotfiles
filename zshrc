@@ -258,3 +258,10 @@ if [ -d $HOME/.pyenv/bin/ ]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
 fi
+
+# git clone git://github.com/wwalker/ssh-find-agent.git ~/.ssh-find-agent
+# finds running ssh agents, useful in tmux
+source ~/.ssh-find-agent/ssh-find-agent.bash
+if ! test $SSH_AUTH_SOCK; then
+    set_ssh_agent_socket
+fi
