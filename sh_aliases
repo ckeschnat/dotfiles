@@ -44,4 +44,5 @@ alias ssh='ssh -A'
 alias s='ssh'
 alias vz='v ~/dotfiles/zshrc'
 alias t='tmux'
+alias cm='cd ~/seafile/mystuff'
 # vi: filetype=zsh
