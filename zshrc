@@ -261,9 +261,11 @@ fi
 
 # git clone git://github.com/wwalker/ssh-find-agent.git ~/.ssh-find-agent
 # finds running ssh agents, useful in tmux
-source ~/.ssh-find-agent/ssh-find-agent.bash
-if ! test $SSH_AUTH_SOCK; then
-    set_ssh_agent_socket
+if [[ -f ~/.ssh-find-agent/ssh-find-agent.bash ]]; then
+    source ~/.ssh-find-agent/ssh-find-agent.bash
+    if ! test $SSH_AUTH_SOCK; then
+        set_ssh_agent_socket
+    fi
 fi
 
 # By default, ^S freezes terminal output and ^Q resumes it. Disable that so
