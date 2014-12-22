@@ -45,6 +45,6 @@ alias s='ssh'
 alias vz='v ~/dotfiles/zshrc'
 alias t='tmux'
 alias cm='cd ~/seafile/mystuff'
-alias hal='rdesktop -g 99% -P -z -x l -r sound:off -u VERVUM\\ckeschnat hal'
+alias hal='rdesktop -g 1024x768 -P -z -x l -r sound:off -u VERVUM\\ckeschnat hal'
 alias crontab='crontab -i'
 # vi: filetype=zsh
