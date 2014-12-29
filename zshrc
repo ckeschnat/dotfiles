@@ -75,6 +75,14 @@ zman() {
   PAGER="less -g -s '+/^       "$1"'" man zshall
 }
 
+vman() {
+  vim -c "SuperMan $*"
+
+  if [ "$?" != "0" ]; then
+    echo "No manual entry for $*"
+  fi
+}
+
 # automatically rename tmux windows to hostnames after ssh
 # and back after disconnecting
 ssh() {
