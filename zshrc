@@ -33,8 +33,8 @@ setopt complete_in_word
 
 DIRSTACKSIZE=5
 
-source ~/.sh_aliases
-source ~/.private_aliases
+[[ -f ~/.sh_aliases ]] && source ~/.sh_aliases
+[[ -f ~/.private_aliases ]] && source ~/.private_aliases
 export PATH=/usr/local/heroku/bin:$HOME/bin:$PATH
 
 if [[ -f /usr/local/share/chruby/chruby.sh ]]; then
