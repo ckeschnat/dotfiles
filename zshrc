@@ -267,8 +267,9 @@ if [ -d $HOME/.pyenv/bin/ ]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
 fi
-
-eval $(keychain --eval --agents ssh -Q --quiet ck)
+if type keychain > /dev/null;  then
+    eval $(keychain --eval --agents ssh -Q --quiet ck)
+fi
 
 # By default, ^S freezes terminal output and ^Q resumes it. Disable that so
 # that those keys can be used for other things.
