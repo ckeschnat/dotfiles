@@ -45,3 +45,5 @@
 	rebase = true
 [push]
 	default = matching
+[merge "ours"]
+	driver = true
