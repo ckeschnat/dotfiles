@@ -291,3 +291,12 @@ function insert-selecta-path-in-command-line() {
 zle -N insert-selecta-path-in-command-line
 # Bind the key to the newly created widget
 bindkey "^S" "insert-selecta-path-in-command-line"
+
+# taskwarrior
+jopen() {
+    xdg-open $(task "$1" info | grep jiraurl | awk '{print $2}' | sed "s/\]$//")
+}
+
+# cmder startup
+cd ~/docs/@Inbox
+clear

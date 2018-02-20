@@ -170,3 +170,8 @@ fi
 
 # Run twolfson/sexy-bash-prompt
 # . ~/.bash_prompt
+
+# Launch Zsh
+if [ -t 1 ]; then
+  exec zsh
+fi

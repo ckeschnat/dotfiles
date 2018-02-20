@@ -48,4 +48,6 @@ alias t='tmux'
 alias cm='cd ~/seafile/mystuff'
 alias hal='rdesktop -g 1024x768 -P -z -x l -r sound:off -u VERVUM\\ckeschnat hal'
 alias crontab='crontab -i'
+alias task='task rc:~/.task/config/taskrc'
+alias taskopen='taskopen -c ~/.task/config/taskopenrc'
 # vi: filetype=zsh
