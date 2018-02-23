@@ -1,0 +1,13 @@
+[general]
+targets = my_jira
+taskrc = ~/.taskconfig/taskrc
+annotation_comments = False
+
+[my_jira]
+service = jira
+jira.base_uri = https://jira.payone-office.de
+jira.username = chris.keschnat
+jira.password = @oracle:use_keyring
+jira.query = (assignee = currentuser() or assignee = it-operations or (project = PCI and assignee = unassigned )) and status != closed and status != resolved and status != DONE AND NOT (id = SUPP-10708)
+jira.description_template = {{jirasummary}} {{jiraid}}
+jira.project_template = Jira

@@ -292,15 +292,16 @@ zle -N insert-selecta-path-in-command-line
 # Bind the key to the newly created widget
 bindkey "^S" "insert-selecta-path-in-command-line"
 
-# taskwarrior
-jo() {
-    xdg-open $(task "$1" info | grep jiraurl | awk '{print $2}' | sed "s/\]$//")
-}
-
 # cmder startup
-cd ~/docs/@Inbox
-clear
+[[ -d ~/win/@Inbox ]] && cd ~/win/@Inbox && clear
 
-export BUGWARRIORRC=~/.task/config/bugwarriorrc
+# taskwarrior / taskopen
+if [[ -f ~/bin/xdg-open ]]; then
+  jo() {
+      ~/bin/xdg-open $(task "$1" info | grep jiraurl | awk '{print $2}' | sed "s/\]$//")
+  }
+fi
+
+[[ -f ~/.taskconfig/bugwarriorrc ]] && export BUGWARRIORRC=~/.taskconfig/bugwarriorrc
 # CA for bugwarrior/jira
-export REQUESTS_CA_BUNDLE=/usr/share/ca-certificates/extra/payone_office_ca.crt
+[[ -f /usr/share/ca-certificates/extra/payone_office_ca.crt ]] && export REQUESTS_CA_BUNDLE=/usr/share/ca-certificates/extra/payone_office_ca.crt
