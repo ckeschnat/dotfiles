@@ -52,5 +52,6 @@ alias t='task'
 alias task='task rc:~/.taskconfig/taskrc'
 alias to='taskopen'
 alias taskopen='taskopen -c ~/.taskconfig/taskopenrc'
+alias ton='to -n'
 alias bp='bugwarrior-pull'
 # vi: filetype=zsh
