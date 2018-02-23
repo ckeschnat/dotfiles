@@ -293,10 +293,14 @@ zle -N insert-selecta-path-in-command-line
 bindkey "^S" "insert-selecta-path-in-command-line"
 
 # taskwarrior
-jopen() {
+jo() {
     xdg-open $(task "$1" info | grep jiraurl | awk '{print $2}' | sed "s/\]$//")
 }
 
 # cmder startup
 cd ~/docs/@Inbox
 clear
+
+export BUGWARRIORRC=~/.task/config/bugwarriorrc
+# CA for bugwarrior/jira
+export REQUESTS_CA_BUNDLE=/usr/share/ca-certificates/extra/payone_office_ca.crt
