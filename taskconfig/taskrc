@@ -44,3 +44,12 @@ uda.jiracreatedts.label=Created At
 uda.jiradescription.type=string
 uda.jiradescription.label=Jira Description
 # END Bugwarrior UDAs
+
+taskd.certificate=\/home\/ck\/.task\/chris_keschnat.cert.pem
+taskd.key=\/home\/ck\/.task\/chris_keschnat.key.pem
+taskd.ca=\/home\/ck\/.task\/ca.cert.pem
+taskd.server=192.168.178.110:53589
+taskd.credentials=Public\/Chris Keschnat\/005c4c83-ee43-4164-a66a-467240ba78af
+context.work=+work
+context.home=+home and -realhome
+context.realhome=+home

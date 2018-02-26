@@ -55,4 +55,5 @@ alias taskopen='taskopen -c ~/.taskconfig/taskopenrc'
 alias ton='to -n'
 alias bp='bugwarrior-pull'
 alias tb='(cd ~/.task && git add -A && git commit -m "autocommit" && git push); true'
+alias ts='t sync'
 # vi: filetype=zsh
