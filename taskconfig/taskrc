@@ -27,3 +27,20 @@ verbose=blank,footnote,label,new-id,affected,edit,special,project,sync,filter
 #include /usr/share/task/dark-gray-256.theme
 
 search.case.sensitive=no
+
+# Bugwarrior UDAs
+uda.jiraurl.type=string
+uda.jiraurl.label=Jira URL
+uda.jiraestimate.type=numeric
+uda.jiraestimate.label=Estimate
+uda.jirasummary.type=string
+uda.jirasummary.label=Jira Summary
+uda.jirafixversion.type=string
+uda.jirafixversion.label=Fix Version
+uda.jiraid.type=string
+uda.jiraid.label=Jira Issue ID
+uda.jiracreatedts.type=date
+uda.jiracreatedts.label=Created At
+uda.jiradescription.type=string
+uda.jiradescription.label=Jira Description
+# END Bugwarrior UDAs
