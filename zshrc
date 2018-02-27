@@ -298,7 +298,7 @@ bindkey "^S" "insert-selecta-path-in-command-line"
 # taskwarrior / taskopen
 if [[ -f ~/bin/xdg-open ]]; then
   jo() {
-      ~/bin/xdg-open $(task "$1" info | grep 'Jira URL' | awk '{print $3}')
+      ~/bin/xdg-open $(t "$1" rc.report.tempreport.columns:'jiraurl' rc.verbose:nothing tempreport)
   }
 fi
 
