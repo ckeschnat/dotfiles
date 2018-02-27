@@ -57,3 +57,5 @@ taskd.credentials=Public\/Chris Keschnat\/005c4c83-ee43-4164-a66a-467240ba78af
 context.work=+work
 context.home=+home and -realhome
 context.realhome=+home
+context=work
+report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
