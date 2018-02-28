@@ -295,13 +295,6 @@ bindkey "^S" "insert-selecta-path-in-command-line"
 # cmder startup
 [[ -d ~/win/@Inbox ]] && cd ~/win/@Inbox && clear
 
-# taskwarrior / taskopen
-if [[ -f ~/bin/xdg-open ]]; then
-  jo() {
-      ~/bin/xdg-open $(t "$1" rc.report.tempreport.columns:'jiraurl' rc.verbose:nothing tempreport)
-  }
-fi
-
 [[ -f ~/.taskconfig/bugwarriorrc ]] && export BUGWARRIORRC=~/.taskconfig/bugwarriorrc
 # CA for bugwarrior/jira
 [[ -f /usr/share/ca-certificates/extra/payone_office_ca.crt ]] && export REQUESTS_CA_BUNDLE=/usr/share/ca-certificates/extra/payone_office_ca.crt
