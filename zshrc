@@ -292,6 +292,7 @@ zle -N insert-selecta-path-in-command-line
 # Bind the key to the newly created widget
 bindkey "^S" "insert-selecta-path-in-command-line"
 
+[[ -f /usr/local/bin/taskd ]] && export export TASKDDATA=/var/taskd
 [[ -f ~/.taskconfig/bugwarriorrc ]] && export BUGWARRIORRC=~/.taskconfig/bugwarriorrc
 # CA for bugwarrior/jira
 [[ -f /usr/share/ca-certificates/extra/payone_office_ca.crt ]] && export REQUESTS_CA_BUNDLE=/usr/share/ca-certificates/extra/payone_office_ca.crt
