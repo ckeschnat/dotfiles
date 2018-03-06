@@ -14,6 +14,7 @@
 data.location=~/.task
 verbose=blank,footnote,label,new-id,affected,edit,special,project,sync,filter
 weekstart=monday
+default.command=ready limit:page
 
 # Color theme (uncomment one to use)
 #include /usr/local/share/doc/task/rc/light-16.theme
@@ -60,3 +61,4 @@ context.home=+home and -realhome
 context.realhome=+home
 context=home
 report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.ready.columns=id,start.age,entry.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due.countdown,until.remaining,description.count,urgency
