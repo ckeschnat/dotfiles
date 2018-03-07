@@ -1,6 +1,5 @@
 [general]
 targets = my_jira
-taskrc = ~/.taskconfig/taskrc
 annotation_comments = False
 annotation_links = True
 
