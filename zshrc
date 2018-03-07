@@ -219,6 +219,15 @@ git_prompt_string() {
     [ -n "$git_where" ] && echo "$(parse_git_state)$GIT_PROMPT_PREFIX%{$fg[yellow]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
 }
 # End git prompt
+
+# taskwarrior count inbox
+taskwarrior_count_in() {
+    [[ -f $(which task) ]] && taskcount=$(task rc.context:none rc.verbose:nothing +in +PENDING count)
+    if [[ $taskcount -gt 0 ]]; then
+      echo -n $taskcount
+    fi
+}
+
 # -----------------------------------------------
 
 function setprompt() {
@@ -228,9 +237,10 @@ function setprompt() {
 
     ### First, assemble the top line
     # Current dir; show in yellow if not writable
-    # Git stuff
+    # Git stuff and taskwarrior +in count
     [[ -w $PWD ]] && infoline+=( "%(#.${red}.${green})" ) || infoline+=( ${yellow} )
-    infoline+=( "%~${reset} $(git_prompt_string)" )
+    infoline+=( "%~${reset} $(git_prompt_string) ${red}$(taskwarrior_count_in)" )
+
 
     # Battery status
     infoline+=$(battery-status)
