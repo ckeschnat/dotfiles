@@ -56,4 +56,6 @@ alias in='t add +in'
 alias tin='t rc.context:none in'
 alias tb='(cd ~/.task && git add -A && git commit -m "autocommit" && git push); true'
 alias ts='t sync'
+#alias python='python3'
+#alias pip='pip3'
 # vi: filetype=zsh
