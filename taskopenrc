@@ -2,7 +2,7 @@
 #BROWSER='xdg-open $FILE &>/dev/null'
 #EDITOR='vim'
 #FILE_CMD='xdg-open'
-TASKBIN='task rc:~/.taskconfig/taskrc'
+TASKBIN='task'
 
 # If you sync tasks NOTES_FOLDER should be a location that syncs and is available to
 # other computers, i.e. /users/dropbox/tasknotes

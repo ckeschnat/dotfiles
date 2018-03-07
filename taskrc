@@ -12,9 +12,18 @@
 
 # Files
 data.location=~/.task
-verbose=blank,footnote,label,new-id,affected,edit,special,project,sync,filter
 weekstart=monday
 default.command=ready limit:page
+
+# Child tasks inherit their parent's urgency if that's higher.
+urgency.inherit=on
+# How urgent something is depends upon what's waiting on it.
+urgency.blocking.coefficient=0
+urgency.blocked.coefficient=0
+
+uda.priority.values = H,M,,L
+urgency.uda.priority.L.coefficient=0
+urgency.uda.priority..coefficient=1.8
 
 # Color theme (uncomment one to use)
 #include /usr/local/share/doc/task/rc/light-16.theme
