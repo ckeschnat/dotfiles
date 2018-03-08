@@ -2,7 +2,6 @@
 targets = my_jira
 annotation_comments = False
 annotation_links = True
-static_fields = jiradescription
 
 [my_jira]
 service = jira
