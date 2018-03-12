@@ -9,7 +9,7 @@ service = jira
 jira.base_uri = https://jira.payone-office.de
 jira.username = chris.keschnat
 jira.password = @oracle:use_keyring
-jira.query = ((assignee = currentuser() or assignee was currentUser()  or assignee = it-operations or (project = PCI and assignee = unassigned ) or (project = SEC AND status in (Open, Reopened, Analysis, "HotFix / Compensation"))) and status != closed and status != resolved and status != DONE AND NOT (id = SUPP-10708))
+jira.query = ((assignee = currentuser() or assignee was currentUser()  or assignee = it-operations or (project = PCI and assignee = unassigned ) or (project = SEC AND status in (Open, Reopened, Analysis, "HotFix / Compensation"))) and status != closed and status != resolved and status != DONE)
 jira.description_template = {{jirasummary}} {{jiraid}}
 jira.project_template = Jira
 jira.add_tags = work
