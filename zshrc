@@ -247,7 +247,7 @@ function setprompt() {
 
     # Username & host
     infoline+=( "${magenta}%n" )
-    [[ -n $SSH_CLIENT ]] && infoline+=( "@%m" )
+    [[ -n $(who am i) ]] && infoline+=( "@%m" )
     infoline+=( " ${yellow}%*${reset}" )
 
     i_width=${(S)infoline//\%\{*\%\}} # search-and-replace color escapes
