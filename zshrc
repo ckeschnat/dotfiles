@@ -70,6 +70,11 @@ function pp() {
     fi
 }
 
+# cat a file without empty lines or comments
+function cat_clean {
+    sed -Ee '/^[[:space:]]*(#|$)/d' $@
+}
+
 # Search zsh stuff easily
 # http://chneukirchen.org/blog/archive/2012/02/10-new-zsh-tricks-you-may-not-know.html
 zman() {
