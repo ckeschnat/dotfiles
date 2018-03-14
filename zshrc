@@ -252,7 +252,7 @@ function setprompt() {
 
     # Username & host
     infoline+=( "${magenta}%n" )
-    [[ -n $(who am i) ]] && infoline+=( "@%m" )
+    infoline+=( "@%m" )
     infoline+=( " ${yellow}%*${reset}" )
 
     i_width=${(S)infoline//\%\{*\%\}} # search-and-replace color escapes
