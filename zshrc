@@ -312,3 +312,22 @@ bindkey "^S" "insert-selecta-path-in-command-line"
 
 # CA for bugwarrior/jira
 [[ -f /usr/share/ca-certificates/extra/payone_office_ca.crt ]] && export REQUESTS_CA_BUNDLE=/usr/share/ca-certificates/extra/payone_office_ca.crt
+
+tickle () {
+    deadline=$1
+    shift
+    in +tickle wait:$deadline $@
+}
+
+webpage_title (){
+    wget -qO- "$*" | hxselect -s '\n' -c  'title' 2>/dev/null
+}
+
+read_and_review (){
+    link="$1"
+    title=$(webpage_title $link)
+    echo $title
+    descr="\"Read and review: $title\""
+    id=$(task add +next +rnr "$descr" | sed -n 's/Created task \(.*\)./\1/p')
+    task "$id" annotate "$link"
+}
