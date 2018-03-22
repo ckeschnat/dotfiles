@@ -227,7 +227,7 @@ git_prompt_string() {
 
 # taskwarrior count inbox
 taskwarrior_count_in() {
-    [[ -f $(which task) ]] && taskcount=$(task rc.context:none rc.verbose:nothing +in +PENDING count)
+    [[ -f $(which task) ]] && [[ -f ~/.taskrc ]] && taskcount=$(task rc.context:none rc.verbose:nothing +in +PENDING count)
     if [[ $taskcount -gt 0 ]]; then
       echo -n $taskcount
     fi
