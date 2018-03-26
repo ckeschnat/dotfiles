@@ -68,6 +68,7 @@ taskd.credentials=Rivered\/Chris Keschnat\/bd603a71-19bc-4b64-b708-95ff0989ff39
 context.work=+work
 context.home=+home and -realhome
 context.realhome=+home
+context.ek=+einkauf
 report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
 report.ready.columns=id,start.age,entry.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due.countdown,until.remaining,description.count,urgency
 report.in.columns           = id,description
