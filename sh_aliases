@@ -59,6 +59,7 @@ alias ts='t sync'
 alias tick='tickle'
 alias think='tickle +1d'
 alias rnr='read_and_review'
+alias tre='t rc.context:none +rnr'
 #alias python='python3'
 #alias pip='pip3'
 # vi: filetype=zsh
