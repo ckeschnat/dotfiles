@@ -299,7 +299,7 @@ zle -N insert-selecta-path-in-command-line
 bindkey "^S" "insert-selecta-path-in-command-line"
 
 # taskserver
-[[ -f /usr/local/bin/taskd ]] && export export TASKDDATA=/var/taskd
+[[ -f /usr/local/bin/taskd ]] && export TASKDDATA=/var/taskd
 
 # CA for bugwarrior/jira
 [[ -f /usr/share/ca-certificates/extra/payone_office_ca.crt ]] && export REQUESTS_CA_BUNDLE=/usr/share/ca-certificates/extra/payone_office_ca.crt
