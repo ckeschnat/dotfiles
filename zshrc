@@ -322,3 +322,7 @@ read_and_review (){
     id=$(task add +next +rnr "$descr" | sed -n 's/Created task \(.*\)./\1/p')
     task "$id" annotate "$link"
 }
+
+if ! pgrep -x seaf-daemon > /dev/null; then
+    [[ -f /usr/bin/seaf-cli ]] && seaf-cli start
+fi
