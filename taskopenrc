@@ -10,7 +10,7 @@ TASKBIN='task'
 NOTES_FOLDER="$HOME/.task/seaf/tw/tasknotes/"
 
 # Preferred extension for tasknotes
-NOTES_EXT=".txt"
+NOTES_EXT=".adoc"
 
 # Path to notes file. UUID will be replaced with the actual uuid of
 # the task. If NOTES_CMD
