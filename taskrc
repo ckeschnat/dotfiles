@@ -71,6 +71,7 @@ context.realhome=+home
 context.ek=+einkauf
 report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
 report.ready.columns=id,start.age,entry.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due.countdown,until.remaining,description.count,urgency
+report.waiting.columns=id,start.active,entry.age,depends.indicator,priority,project,tags,recur.indicator,wait,wait.remaining,scheduled,due,until,description.count
 report.in.columns           = id,description
 report.in.description       = Inbox
 report.in.filter            = status:pending limit:page (+in)
