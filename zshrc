@@ -326,3 +326,5 @@ read_and_review (){
 if ! pgrep -x seaf-daemon > /dev/null; then
     [[ -f /usr/bin/seaf-cli ]] && seaf-cli start
 fi
+
+eval `dircolors ~/dotfiles/dircolors.256dark`
