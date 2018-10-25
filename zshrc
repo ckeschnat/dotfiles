@@ -273,9 +273,9 @@ if [ -d $HOME/.pyenv/bin/ ]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
 fi
-if type keychain > /dev/null;  then
-    eval $(keychain --eval --agents ssh -Q --quiet ck)
-fi
+#if type keychain > /dev/null;  then
+#    eval $(keychain --eval --agents ssh -Q --quiet ck)
+#fi
 
 # By default, ^S freezes terminal output and ^Q resumes it. Disable that so
 # that those keys can be used for other things.
@@ -323,8 +323,8 @@ read_and_review (){
     task "$id" annotate "$link"
 }
 
-if ! pgrep -x seaf-daemon > /dev/null; then
-    [[ -f /usr/bin/seaf-cli ]] && seaf-cli start
-fi
+#if ! pgrep -x seaf-daemon > /dev/null; then
+#    [[ -f /usr/bin/seaf-cli ]] && seaf-cli start
+#fi
 
 eval `dircolors ~/dotfiles/dircolors.256dark`
