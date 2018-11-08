@@ -1,0 +1,17 @@
+FontHeight=10
+Font=Liberation Mono
+FontWeight=700
+FontIsBold=yes
+ThemeFile=zenburn-high-contrast.minttyrc
+ColourScheme=
+CursorType=block
+Columns=140
+Rows=40
+Term=xterm-256color
+BellType=0
+BellTaskbar=no
+DeleteSendsDEL=yes
+CopyAsRTF=no
+RightClickAction=paste
+Locale=en_US
+Charset=UTF-8
