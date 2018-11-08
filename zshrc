@@ -89,14 +89,15 @@ vman() {
   fi
 }
 
+# TODO(chris): doesn't work properly anymore - research
 # automatically rename tmux windows to hostnames after ssh
 # and back after disconnecting
-ssh() {
-    [[ ! -z "$TMUX" ]] && tmux rename-window ${${(P)#}%.*}
-    command ssh "$@"
-    [[ ! -z "$TMUX" ]] && tmux rename-window "zsh"
-    return 0
-}
+#ssh() {
+#    [[ ! -z "$TMUX" ]] && tmux rename-window ${${(P)#}%.*}
+#    command ssh "$@"
+#    [[ ! -z "$TMUX" ]] && tmux rename-window "zsh"
+#    return 0
+#}
 #------------------------------
 
 # Show type of completion and group by it
