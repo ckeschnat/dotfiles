@@ -221,8 +221,8 @@ parse_git_state() {
 
 # If inside a Git repository, print its branch and state
 git_prompt_string() {
-    local git_where="$(parse_git_branch)"
-    [ -n "$git_where" ] && echo "$(parse_git_state)$GIT_PROMPT_PREFIX%{$fg[yellow]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
+#    local git_where="$(parse_git_branch)"
+#    [ -n "$git_where" ] && echo "$(parse_git_state)$GIT_PROMPT_PREFIX%{$fg[yellow]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
 }
 # End git prompt
 #
@@ -328,4 +328,4 @@ read_and_review (){
 #    [[ -f /usr/bin/seaf-cli ]] && seaf-cli start
 #fi
 
-eval `dircolors ~/dotfiles/dircolors.256dark`
+eval `dircolors ~/.dircolors.256dark`

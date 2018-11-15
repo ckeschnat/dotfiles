@@ -1,0 +1,79 @@
+# [Created by task 2.2.0 2/13/2018 13:21:49]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-faq',
+# 'man task-tutorial', 'man task-color', 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/.task
+weekstart=monday
+default.command=ready limit:page
+
+# Child tasks inherit their parent's urgency if that's higher.
+urgency.inherit=on
+# How urgent something is depends upon what's waiting on it.
+urgency.blocking.coefficient=0
+urgency.blocked.coefficient=0
+
+uda.priority.values = H,M,,L
+urgency.uda.priority.L.coefficient=0
+urgency.uda.priority..coefficient=1.8
+
+# Color theme (uncomment one to use)
+#include /usr/local/share/doc/task/rc/light-16.theme
+#include /usr/local/share/doc/task/rc/light-256.theme
+#include /usr/local/share/doc/task/rc/dark-16.theme
+#include /usr/local/share/doc/task/rc/dark-256.theme
+#include /usr/local/share/doc/task/rc/dark-red-256.theme
+#include /usr/local/share/doc/task/rc/dark-green-256.theme
+#include /usr/local/share/doc/task/rc/dark-blue-256.theme
+#include /usr/local/share/doc/task/rc/dark-violets-256.theme
+#include /usr/local/share/doc/task/rc/dark-yellow-green.theme
+#include /usr/local/share/doc/task/rc/dark-gray-256.theme
+#include /usr/local/share/doc/task/rc/dark-gray-blue-256.theme
+include /usr/local/share/doc/task/rc/solarized-dark-256.theme
+#include /usr/local/share/doc/task/rc/solarized-light-256.theme
+#include /usr/local/share/doc/task/rc/no-color.theme
+
+search.case.sensitive=no
+
+# Bugwarrior UDAs
+uda.jiraurl.type=string
+uda.jiraurl.label=Jira URL
+uda.jiraestimate.type=numeric
+uda.jiraestimate.label=Estimate
+uda.jirasummary.type=string
+uda.jirasummary.label=Jira Summary
+uda.jirafixversion.type=string
+uda.jirafixversion.label=Fix Version
+uda.jiraid.type=string
+uda.jiraid.label=Jira Issue ID
+uda.jiracreatedts.type=date
+uda.jiracreatedts.label=Created At
+uda.jiradescription.type=string
+uda.jiradescription.label=Jira Description
+# END Bugwarrior UDAs
+
+taskd.certificate=~\/.task\/chris_keschnat.cert.pem
+taskd.key=~\/.task\/chris_keschnat.key.pem
+taskd.ca=~\/.task\/ca.cert.pem
+taskd.server=moon.rivered.de:21
+taskd.credentials=Rivered\/Chris Keschnat\/bd603a71-19bc-4b64-b708-95ff0989ff39
+context.work=+work
+context.home=+home and -realhome
+context.realhome=+home
+context.ek=+einkauf
+report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.ready.columns=id,start.age,entry.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due.countdown,until.remaining,description.count,urgency
+report.waiting.columns=id,start.active,entry.age,depends.indicator,priority,project,tags,recur.indicator,wait,wait.remaining,scheduled,due,until,description.count
+report.in.columns           = id,description
+report.in.description       = Inbox
+report.in.filter            = status:pending limit:page (+in)
+report.in.labels            = ID,Description
+context=work

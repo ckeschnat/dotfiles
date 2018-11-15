@@ -1,0 +1,14 @@
+* How to use stow
+Use ~.special~ inside ~/.dotfiles~ to store configuration depending on machine.
+
+- Create several folders
+- Symlink identical files
+- Create files that differ in each directory.
+
+#+BEGIN_SRC sh
+  clone to ~/.dotfiles
+  cd ~/.dotfiles
+  stow *
+  cd .special
+  stow -t ~ <package>
+#+END_SRC

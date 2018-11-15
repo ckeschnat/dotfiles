@@ -1,5 +1,5 @@
 export LS_OPTIONS='--color=auto'
-eval `dircolors ~/dotfiles/dircolors.moonshine`
+eval `dircolors ~/.dircolors.moonshine`
 alias ls='ls --time-style=+"%d.%m.%Y %H:%M" $LS_OPTIONS'
 alias ll='ls -l --classify --group-directories-first --human-readable --indicator-style=slash'
 alias l='ll'
@@ -44,7 +44,6 @@ alias gdl='git dl'
 alias p='popd'
 alias ssh='ssh -A'
 alias s='ssh'
-alias vz='v ~/dotfiles/zshrc'
 alias tm='tmux'
 alias cm='cd ~/seafile/mystuff'
 alias hal='rdesktop -g 1024x768 -P -z -x l -r sound:off -u VERVUM\\ckeschnat hal'
