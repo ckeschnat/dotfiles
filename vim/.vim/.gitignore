@@ -1,0 +1,7 @@
+bundle
+.netrwhist
+.vimbackup
+.vimswap
+.vimundo
+.vimviews
+tmp
