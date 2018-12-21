@@ -1,5 +1,4 @@
 export LS_OPTIONS='--color=auto'
-eval `dircolors ~/.dircolors.moonshine`
 alias ls='ls --time-style=+"%d.%m.%Y %H:%M" $LS_OPTIONS'
 alias ll='ls -l --classify --group-directories-first --human-readable --indicator-style=slash'
 alias l='ll'
