@@ -328,4 +328,3 @@ read_and_review (){
 #    [[ -f /usr/bin/seaf-cli ]] && seaf-cli start
 #fi
 
-eval `dircolors ~/.dircolors.256dark`
