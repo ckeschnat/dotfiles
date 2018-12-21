@@ -1,0 +1,52 @@
+[user]
+	name = Chris Keschnat
+	email = chris@rivered.de
+[http]
+    sslCAInfo = C:\\docs\\payone_office_ca.cer
+    sslCAPath = C:\\docs\\stash.payone-office.cer
+    sslVerify = false
+[color]
+        status = auto
+        diff = auto
+        branch = auto
+        interactive = auto
+        ui = true
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+[color "diff"]
+        meta = yellow bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
+[alias]
+        st = status -s -b
+        dl = diff HEAD~1 HEAD
+        lold = log --oneline --decorate --graph --all
+        l = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+        co = checkout
+        amend = commit --amend
+        unstage = reset HEAD              # remove files from index (tracking)
+        uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
+        save = !git add -A && git commit -m 'SAVEPOINT'
+        wip = !git add -u && git commit -m "WIP" 
+        undo = reset HEAD~1 --mixed
+        wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+        bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+        bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+[apply]
+        whitespace = fix
+[core]
+	autocrlf = input
+[init]
+	templatedir = ~/.git_template
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+[pull]
+	rebase = true
+[push]
+	default = simple
