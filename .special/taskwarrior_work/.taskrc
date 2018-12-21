@@ -61,11 +61,6 @@ uda.jiradescription.type=string
 uda.jiradescription.label=Jira Description
 # END Bugwarrior UDAs
 
-taskd.certificate=~\/.task\/chris_keschnat.cert.pem
-taskd.key=~\/.task\/chris_keschnat.key.pem
-taskd.ca=~\/.task\/ca.cert.pem
-taskd.server=moon.rivered.de:21
-taskd.credentials=Rivered\/Chris Keschnat\/bd603a71-19bc-4b64-b708-95ff0989ff39
 context.work=+work
 context.home=+home and -realhome
 context.realhome=+home
