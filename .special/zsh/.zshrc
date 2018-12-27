@@ -220,14 +220,17 @@ parse_git_state() {
 }
 
 
-if [ -d "/c/apps/Git/bin/" ]; then
-    # If inside a Git repository, print its branch and state
-    git_prompt_string() {
-        local git_where="$(parse_git_branch)"
-        [ -n "$git_where" ] && echo "$(parse_git_state)$GIT_PROMPT_PREFIX%{$fg[yellow]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
-    }
-    # End git prompt
-fi
+# If inside a Git repository, print its branch and state
+# But only if we're on Linux (not WSL) or have portable git installed
+git_prompt_string() {
+    if [[ "$(uname -s)" == "Linux" ]] || [ -d "/c/apps/Git/bin/" ]; then
+        if ! grep -q "Microsoft" /proc/version; then
+            local git_where="$(parse_git_branch)"
+            [ -n "$git_where" ] && echo "$(parse_git_state)$GIT_PROMPT_PREFIX%{$fg[yellow]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
+        fi
+    fi
+}
+# End git prompt
 #
 # -----------------------------------------------
 
