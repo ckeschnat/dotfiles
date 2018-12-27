@@ -219,12 +219,15 @@ parse_git_state() {
     fi
 }
 
-# If inside a Git repository, print its branch and state
-git_prompt_string() {
-    local git_where="$(parse_git_branch)"
-    [ -n "$git_where" ] && echo "$(parse_git_state)$GIT_PROMPT_PREFIX%{$fg[yellow]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
-}
-# End git prompt
+
+if [ -d "/c/apps/Git/bin/" ]; then
+    # If inside a Git repository, print its branch and state
+    git_prompt_string() {
+        local git_where="$(parse_git_branch)"
+        [ -n "$git_where" ] && echo "$(parse_git_state)$GIT_PROMPT_PREFIX%{$fg[yellow]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
+    }
+    # End git prompt
+fi
 #
 # -----------------------------------------------
 
@@ -323,6 +326,10 @@ read_and_review (){
     id=$(task add +next +rnr "$descr" | sed -n 's/Created task \(.*\)./\1/p')
     task "$id" annotate "$link"
 }
+
+if [ -d "/c/apps/Git/bin/" ]; then
+    export PATH="/c/apps/Git/bin:$PATH"
+fi
 
 #if ! pgrep -x seaf-daemon > /dev/null; then
 #    [[ -f /usr/bin/seaf-cli ]] && seaf-cli start
