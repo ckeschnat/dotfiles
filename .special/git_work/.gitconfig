@@ -1,6 +1,6 @@
 [user]
 	name = Chris Keschnat
-	email = chris@rivered.de
+	email = chris.keschnat@bspayone.com
 [http]
     sslCAInfo = C:\\docs\\payone_office_ca.cer
     sslCAPath = C:\\docs\\stash.payone-office.cer
