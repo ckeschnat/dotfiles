@@ -338,3 +338,6 @@ fi
 #    [[ -f /usr/bin/seaf-cli ]] && seaf-cli start
 #fi
 
+if [ -d "/snap/bin" ]; then
+    export PATH="/snap/bin:$PATH"
+fi
