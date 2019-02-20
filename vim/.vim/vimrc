@@ -28,9 +28,9 @@ set tags+=.git/tags
 " ----------------------------------------------------------------------------
 " displaying text
 " ----------------------------------------------------------------------------
-set number " Display line numbers
+set nonumber " Display line numbers
 if exists("&relativenumber")
-    set relativenumber " Show line numbers relative to cursor
+    set norelativenumber " Show line numbers relative to cursor
 endif
 set linebreak " Break lines on words
 set wrap " Wrap lines
@@ -490,7 +490,7 @@ endfunction
 
 
 " NeoBundle
-if !exists("g:disable_all_plugins")
+if exists("g:enable_all_plugins")
     " Auto installing NeoBundle
     let neobundle_readme=expand($HOME.'/.vim/bundle/neobundle.vim/README.md')
     if !filereadable(neobundle_readme)
@@ -538,4 +538,3 @@ if !exists("g:disable_all_plugins")
     endif
 endif
 
-nnoremap <leader>a oBetriebssystem wird nicht eingesetzt.<Esc>
