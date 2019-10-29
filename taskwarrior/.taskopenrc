@@ -7,10 +7,10 @@ TASKBIN='task'
 # If you sync tasks NOTES_FOLDER should be a location that syncs and is available to
 # other computers, i.e. /users/dropbox/tasknotes
 # NOTES_FOLDER to store notes in, must already exist!
-NOTES_FOLDER="$HOME/.task/seaf/tw/tasknotes/"
+#NOTES_FOLDER="$HOME/.task/seaf/tw/tasknotes/"
 
 # Preferred extension for tasknotes
-NOTES_EXT=".adoc"
+#NOTES_EXT=".adoc"
 
 # Path to notes file. UUID will be replaced with the actual uuid of
 # the task. If NOTES_CMD
