@@ -341,3 +341,11 @@ fi
 if [ -d "/snap/bin" ]; then
     export PATH="/snap/bin:$PATH"
 fi
+
+if [ -d "/c/apps/bat/" ]; then
+    export PATH="/c/apps/bat:$PATH"
+fi
+
+if [ -d "/home/NOBODY/.cask/bin" ]; then
+    export PATH="/home/NOBODY/.cask/bin:$PATH"
+fi

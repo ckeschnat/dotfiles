@@ -266,3 +266,6 @@ fi
 #    [[ -f /usr/bin/seaf-cli ]] && seaf-cli start
 #fi
 
+if [ -d "/c/apps/bat/" ]; then
+    export PATH="/c/apps/bat:$PATH"
+fi

@@ -52,6 +52,7 @@ alias to='taskopen'
 alias tw='t add +work'
 alias th='t add +home'
 alias bp='bugwarrior-pull'
+alias cat='bat'
 #alias python='python3'
 #alias pip='pip3'
 # vi: filetype=zsh
